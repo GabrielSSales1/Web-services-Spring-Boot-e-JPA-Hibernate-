@@ -3,7 +3,6 @@ package com.WorkShop_JPA.Hibernate.projeto.service;
 import com.WorkShop_JPA.Hibernate.projeto.entities.User;
 import com.WorkShop_JPA.Hibernate.projeto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
