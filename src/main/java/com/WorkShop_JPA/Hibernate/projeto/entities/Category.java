@@ -1,14 +1,15 @@
 package com.WorkShop_JPA.Hibernate.projeto.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
+@Table(name = "tb_categorys")
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -16,6 +17,10 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
     public Category(){
     }
@@ -41,6 +46,14 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Category category)) return false;
@@ -51,4 +64,5 @@ public class Category implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
